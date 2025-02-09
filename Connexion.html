@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Saint-Valentin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ff9a9e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff6b81;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff4d6e;
+        }
+        .hint {
+            font-size: 0.9em;
+            color: #f1f1f1;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .hint strong {
+            color: #fff;
+        }
+        .spacer {
+            margin-top: 20px; /* Espacement entre les éléments */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Veuillez vous connecter</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Identifiant" required>
+            <div class="hint"><strong>Indice 1 :</strong> Ton identifiant est égal à Prénom.nom</div>
+            <div class="spacer"></div> <!-- Espace ajouté entre l'indice 1 et la zone du mot de passe -->
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <div class="hint"><strong>Indice 2 :</strong> Ton mot de passe est une date magique pour nous deux sous format jjmmyyyy</div>
+            <div class="spacer"></div> <!-- Espace ajouté entre l'indice 2 et le bouton -->
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <script>
+        const validUsername = 'Flavie.vachon'; // Identifiant prédefini
+        const validPassword = '05092024'; // Exemple de date magique (jjmmyyyy)
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === validUsername && password === validPassword) {
+                window.location.href = 'index.html'; // Remplacer par l'URL de la vraie page
+            } else {
+                alert('Identifiant ou mot de passe incorrect.');
+            }
+        });
+    </script>
+</body>
+</html>

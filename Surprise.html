@@ -1,0 +1,251 @@
+<!backp2 html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeuse Saint-Valentin</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            color: white;
+            text-align: center;
+            overflow-x: hidden; /* Pour éviter tout décalage horizontal */
+        }
+
+        h1 {
+	    margin-top: 90px;
+            font-size: 2.5em;
+            margin: 50px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 0;
+        }
+
+        .bubble {
+            width: 500px;
+            height: 650px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+	    margin: 60px 0; /* Espacement augmenté */
+            transition: transform 0.4s ease-in-out;
+            animation: floatQuinconce 4s infinite ease-in-out;
+        }
+
+        .bubble img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease-in-out;
+        }
+
+
+
+        /* Effet de zoom au survol */
+        .bubble:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Animation combinée : flottement + quinconce */
+        @keyframes floatQuinconce {
+            0% { transform: translateX(-10vw) translateY(0px); }
+            50% { transform: translateX(-10vw) translateY(-10px); }
+            100% { transform: translateX(-10vw) translateY(0px); }
+        }
+
+        .bubble:nth-child(even) {
+            animation: floatQuinconceInverse 4s infinite ease-in-out;
+        }
+
+        @keyframes floatQuinconceInverse {
+            0% { transform: translateX(10vw) translateY(0px); }
+            50% { transform: translateX(10vw) translateY(-10px); }
+            100% { transform: translateX(10vw) translateY(0px); }
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<!-- Canvas pour les cœurs -->
+  <canvas id="heartsCanvas"></canvas>
+    <h1>❤️ Joyeuse Saint-Valentin mon ptit chat ❤️</h1>
+
+    <script>
+        const canvas = document.getElementById("heartsCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = [];
+        const heartCount = 50; // Plus de cœurs
+
+        function createHeart() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                size: Math.random() * 15 + 10, // Variations de taille
+                speed: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.5,
+                angle: Math.random() * 360, // Rotation aléatoire
+                swing: Math.random() * 2 + 1, // Mouvement latéral doux
+                direction: Math.random() < 0.5 ? -1 : 1 // Sens aléatoire
+            };
+        }
+
+        for (let i = 0; i < heartCount; i++) {
+            hearts.push(createHeart());
+        }
+
+        function drawHearts() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = "20px Arial";
+
+            hearts.forEach((heart, index) => {
+                ctx.globalAlpha = heart.opacity;
+                ctx.save();
+                ctx.translate(heart.x, heart.y);
+                ctx.rotate((heart.angle * Math.PI) / 180);
+                ctx.fillText("❤️", 0, 0);
+                ctx.restore();
+                
+                heart.y += heart.speed;
+                heart.x += Math.sin(heart.angle * Math.PI / 180) * heart.swing * heart.direction;
+                heart.angle += 1 * heart.direction; // Rotation progressive
+
+                if (heart.y > canvas.height) {
+                    hearts[index] = createHeart();
+                }
+            });
+
+            requestAnimationFrame(drawHearts);
+        }
+
+        drawHearts();
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+
+
+
+    <!-- Section avec le texte -->
+    <section>
+	<p>
+            Bon déjà... Mes félicitations d'être arrivée jusqu'ici, j'espère que ça n'a pas été trop dur pour toi (sinon j'ai des soucis à me faire 😨)...
+        </p>
+        <p>
+            Je sais qu’aujourd’hui est un jour un peu spécial, car c’est la Saint-Valentin. Je suis vraiment dégouté de ne pas être à tes côtés pour fêter ça comme il se doit. Mais je sais pertinemment que ce n’est sûrement pas la dernière fois que nous allons traverser cette date ensemble. Au contraire, nous sommes bien partis pour en vivre des tonnes et des tonnes.
+        </p>
+        <p>
+            Étant très loin de toi, j’ai réfléchi à un cadeau original que je pourrais te faire. Évidemment, je ne suis pas prêt d’avoir tes talents pour ce genre de petites attentions. Alors, j’ai creusé encore et encore, en réfléchissant à ce que je pouvais faire avec mes propres compétences (Dieu sait que j’en ai beaucoup, alors c’était trèèèèèèèèès fastidieux…).
+        </p>
+        <p>
+            Puis, j’ai eu l’idée de te faire un petit site internet pour retracer ces premiers mois que nous avons passés côte à côte. Mine de rien, même si ça ne fait que 6 mois que nous sommes ensemble (eh oui, déjà !), le temps peut à la fois s’écouler très lentement mais aussi très vite, selon les perspectives…
+        </p>
+        <p>
+            J’ai l’impression d’avoir déjà vécu énormément de choses avec toi et vraiment que des choses positives ce qui me conforte encore plus dans l’idée de vouloir passer le reste de ma vie à tes côtés. Je sais que dire ce genre de chose peuvent paraître "bateau" ou un peu "canard" sur les bords mais c'est que je vraiment ce que je ressens pour toi l'instant même. J'espère en tout cas ne pas trop te faire peur en te dévoilant tous les sentiments que j'éprouve pour toi...
+        </p>
+        <p>
+            Voilà, je vais arrêter de parler et je vais te laisser découvrir tout ça par toi-même en espérant que ça te plaira ❤️
+        </p>
+	<p margin-bottom: 80px;"
+            ↓  On commence bien évidemment là où tout a commencé : par ce petit message de la charmeuse de la passerelle du BTH 4... le reste appartient à l'histoire  ↓
+        </p>
+        <p>
+
+        </p>
+<p style="text-align: center; font-size: 0.8em; margin-top: 40px; margin-bottom: 80px; margin-top: 80px;">
+     p.s : je suis une merde je voulais mettre des commentaires pour certaines photos mais je n'ai pas réussi #legrosnul
+</p>
+
+    </p>
+
+    </section>
+
+    <!-- Section des bulles -->
+    <div class="container">
+        <!-- Bulles avec images -->
+        <div class="bubble"><img src="Photo 25.jpg" alt="Photo 25"></div>
+
+	<div class="bubble"><img src="Vidéo-6.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Photo 1.jpg" alt="Photo 1"></div>
+	<div class="bubble"><img src="Vidéo-7.gif" alt="GIF"></div>
+	<div class="bubble"><img src="Vidéo-5.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Photo 6.jpeg" alt="Photo 6"></div>
+        <div class="bubble"><img src="Photo 7.jpeg" alt="Photo 7"></div>
+        <div class="bubble"><img src="Photo 8.jpeg" alt="Photo 8"></div>
+        <div class="bubble"><img src="Vidéo-4.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Vidéo-8.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Photo 9.jpeg" alt="Photo 9"></div>
+        <div class="bubble"><img src="Photo 10.jpeg" alt="Photo 10"></div>
+        <div class="bubble"><img src="Photo 11.jpeg" alt="Photo 11"></div>
+        <div class="bubble"><img src="Photo 31.jpg" alt="Photo 31"></div>
+        <div class="bubble"><img src="Photo 23.jpg" alt="Photo 23"></div>
+        <div class="bubble"><img src="Photo 24.jpg" alt="Photo 24"></div>
+        <div class="bubble"><img src="Vidéo-1.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Vidéo-2.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Photo 12.jpeg" alt="Photo 12"></div>
+        <div class="bubble"><img src="Photo 13.jpeg" alt="Photo 13"></div>
+        <div class="bubble"><img src="Photo 14.jpeg" alt="Photo 14"></div>
+        <div class="bubble"><img src="Vidéo-3.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Photo 15.jpeg" alt="Photo 15"></div>
+        <div class="bubble"><img src="Photo 2.jpg" alt="Photo 2"></div>
+        <div class="bubble"><img src="Photo 3.jpg" alt="Photo 3"></div>
+        <div class="bubble"><img src="Photo 32.jpeg" alt="Photo 32"></div>
+        <div class="bubble"><img src="Photo 4.jpg" alt="Photo 4"></div>
+        <div class="bubble"><img src="Photo 16.jpeg" alt="Photo 16"></div>
+        <div class="bubble"><img src="Photo 17.jpeg" alt="Photo 17"></div>
+        <div class="bubble"><img src="Photo 18.jpeg" alt="Photo 18"></div>
+        <div class="bubble"><img src="Photo 19.jpeg" alt="Photo 19"></div>
+        <div class="bubble"><img src="Photo 20.jpeg" alt="Photo 20"></div>
+        <div class="bubble"><img src="Photo 21.jpeg" alt="Photo 21"></div>
+        <div class="bubble"><img src="Photo 5.jpg" alt="Photo 5"></div>
+
+        <div class="bubble"><img src="Photo 26.jpg" alt="Photo 26"></div>
+        <div class="bubble"><img src="Photo 28.jpg" alt="Photo 28"></div>
+        <div class="bubble"><img src="Photo 29.jpg" alt="Photo 29"></div>
+        <div class="bubble"><img src="Photo 30.jpg" alt="Photo 30"></div>
+
+        <div class="bubble"><img src="Photo 22.jpeg" alt="Photo 22"></div>
+
+        <div class="bubble"><img src="Photo 27.jpg" alt="Photo 27"></div>
+
+    </div>
+
+<p style="text-align: center; font-size: 1.5em; font-weight: bold; margin-top: 40px; margin-bottom: 100px;">
+    ❤️ Encore une bonne Saint-Valentin mon amour, je t'aime très fort ❤️
+</p>
+
+</body>
+</html>
