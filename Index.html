@@ -53,7 +53,10 @@
             color: #fff;
         }
         .spacer {
-            margin-top: 20px; /* Espacement entre les éléments */
+            margin-top: 20px;
+        }
+        ul {
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -62,27 +65,31 @@
         <h2>Veuillez vous connecter</h2>
         <form id="loginForm">
             <input type="text" id="username" placeholder="Identifiant" required>
-            <div class="hint"><strong>Indice 1 :</strong> Ton identifiant est égal à Prénom.nom</div>
-            <div class="spacer"></div> <!-- Espace ajouté entre l'indice 1 et la zone du mot de passe -->
+            <div class="hint"><strong>Indice 1 :</strong> Ton identifiant est ton Prénom.nom</div>
+            <div class="spacer"></div>
             <input type="password" id="password" placeholder="Mot de passe" required>
-            <div class="hint"><strong>Indice 2 :</strong> Ton mot de passe est une date magique pour nous deux sous format jjmmyyyy</div>
-            <div class="spacer"></div> <!-- Espace ajouté entre l'indice 2 et le bouton -->
+            <div class="hint">
+                <strong>Indice 2 :</strong> Ton mot de passe est :
+                <ul>
+                    <li>Une date magique pour nous deux sous format jjmmaaaa</li>
+                    <li>Suivi (sans espace) du nom du premier restaurant que nous avons fait tous les deux (le nom du restaurant être retranscrit avec tous ses caractères)</li>
+                </ul>
+            </div>
+            <div class="spacer"></div>
             <button type="submit">Se connecter</button>
         </form>
     </div>
 
     <script>
-        const validUsername = 'Flavie.vachon'; // Identifiant prédefini
-        const validPassword = '05092024'; // Exemple de date magique (jjmmyyyy)
+        const validUsername = 'Flavie.vachon';
+        const validPassword = '05092024Chez Gladines';
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-
             if (username === validUsername && password === validPassword) {
-                window.location.href = 'Surprise.html'; // Remplacer par l'URL de la vraie page
+                window.location.href = 'Surprise.html';
             } else {
                 alert('Identifiant ou mot de passe incorrect.');
             }

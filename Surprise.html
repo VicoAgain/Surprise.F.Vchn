@@ -16,7 +16,7 @@
         }
 
         h1 {
-	    margin-top: 90px;
+	   margin-top: 90px;
             font-size: 2.5em;
             margin: 50px;
         }
@@ -89,6 +89,18 @@
             z-index: 1;
         }
 
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #countdown {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
 
     </style>
 </head>
@@ -157,8 +169,6 @@
         });
     </script>
 
-
-
     <!-- Section avec le texte -->
     <section>
 	<p>
@@ -185,11 +195,45 @@
         <p>
 
         </p>
-<p style="text-align: center; font-size: 0.8em; margin-top: 40px; margin-bottom: 80px; margin-top: 80px;">
-     p.s : je suis une merde je voulais mettre des commentaires pour certaines photos mais je n'ai pas réussi #legrosnul
+<p style="text-align: justify; font-size: 1.2em; line-height: 1.6; margin-top: 80px; margin-bottom: 80px; margin-top: 120px;">
+     Mais avant, voici un compte à rebours personnalisé, plus besoin des applis de merde 😘
 </p>
 
+    <div class="countdown-container">
+        <h1>Le retour de la star</h1>
+        <div id="countdown"></div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const targetDate = new Date('April 10, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference < 0) {
+                countdownElement.innerHTML = "La star est de retour !";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
     </p>
+
+        </p>
+<p style="text-align: center; font-size: 0.8em; margin-top: 40px; margin-bottom: 80px; margin-top: 180px;">
+     P.S : je suis une merde je voulais mettre des commentaires pour certaines photos mais mes talents de codeur du dimanche m'ont fait défaut...
+</p>
+
 
     </section>
 
@@ -198,48 +242,48 @@
         <!-- Bulles avec images -->
         <div class="bubble"><img src="Photo 25.jpg" alt="Photo 25"></div>
 
-	<div class="bubble"><img src="Vidéo-6.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Photo 1.jpg" alt="Photo 1"></div>
-	<div class="bubble"><img src="Vidéo-7.gif" alt="GIF"></div>
-	<div class="bubble"><img src="Vidéo-5.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Photo 6.jpeg" alt="Photo 6"></div>
-        <div class="bubble"><img src="Photo 7.jpeg" alt="Photo 7"></div>
-        <div class="bubble"><img src="Photo 8.jpeg" alt="Photo 8"></div>
-        <div class="bubble"><img src="Vidéo-4.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Vidéo-8.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Photo 9.jpeg" alt="Photo 9"></div>
-        <div class="bubble"><img src="Photo 10.jpeg" alt="Photo 10"></div>
-        <div class="bubble"><img src="Photo 11.jpeg" alt="Photo 11"></div>
-        <div class="bubble"><img src="Photo 31.jpg" alt="Photo 31"></div>
-        <div class="bubble"><img src="Photo 23.jpg" alt="Photo 23"></div>
-        <div class="bubble"><img src="Photo 24.jpg" alt="Photo 24"></div>
-        <div class="bubble"><img src="Vidéo-1.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Vidéo-2.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Photo 12.jpeg" alt="Photo 12"></div>
-        <div class="bubble"><img src="Photo 13.jpeg" alt="Photo 13"></div>
-        <div class="bubble"><img src="Photo 14.jpeg" alt="Photo 14"></div>
-        <div class="bubble"><img src="Vidéo-3.gif" alt="GIF"></div>
-        <div class="bubble"><img src="Photo 15.jpeg" alt="Photo 15"></div>
-        <div class="bubble"><img src="Photo 2.jpg" alt="Photo 2"></div>
-        <div class="bubble"><img src="Photo 3.jpg" alt="Photo 3"></div>
-        <div class="bubble"><img src="Photo 32.jpeg" alt="Photo 32"></div>
-        <div class="bubble"><img src="Photo 4.jpg" alt="Photo 4"></div>
-        <div class="bubble"><img src="Photo 16.jpeg" alt="Photo 16"></div>
-        <div class="bubble"><img src="Photo 17.jpeg" alt="Photo 17"></div>
-        <div class="bubble"><img src="Photo 18.jpeg" alt="Photo 18"></div>
-        <div class="bubble"><img src="Photo 19.jpeg" alt="Photo 19"></div>
-        <div class="bubble"><img src="Photo 20.jpeg" alt="Photo 20"></div>
-        <div class="bubble"><img src="Photo 21.jpeg" alt="Photo 21"></div>
-        <div class="bubble"><img src="Photo 5.jpg" alt="Photo 5"></div>
+	<div class="bubble"><img src="Images\Vidéo-6.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Photo 1.jpg" alt="Photo 1"></div>
+	<div class="bubble"><img src="Images\Vidéo-7.gif" alt="GIF"></div>
+	<div class="bubble"><img src="Images\Vidéo-5.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Photo 6.jpeg" alt="Photo 6"></div>
+        <div class="bubble"><img src="Images\Photo 7.jpeg" alt="Photo 7"></div>
+        <div class="bubble"><img src="Images\Photo 8.jpeg" alt="Photo 8"></div>
+        <div class="bubble"><img src="Images\Vidéo-4.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Vidéo-8.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Photo 9.jpeg" alt="Photo 9"></div>
+        <div class="bubble"><img src="Images\Photo 10.jpeg" alt="Photo 10"></div>
+        <div class="bubble"><img src="Images\Photo 11.jpeg" alt="Photo 11"></div>
+        <div class="bubble"><img src="Images\Photo 31.jpg" alt="Photo 31"></div>
+        <div class="bubble"><img src="Images\Photo 23.jpg" alt="Photo 23"></div>
+        <div class="bubble"><img src="Images\Photo 24.jpg" alt="Photo 24"></div>
+        <div class="bubble"><img src="Images\Vidéo-1.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Vidéo-2.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Photo 12.jpeg" alt="Photo 12"></div>
+        <div class="bubble"><img src="Images\Photo 13.jpeg" alt="Photo 13"></div>
+        <div class="bubble"><img src="Images\Photo 14.jpeg" alt="Photo 14"></div>
+        <div class="bubble"><img src="Images\Vidéo-3.gif" alt="GIF"></div>
+        <div class="bubble"><img src="Images\Photo 15.jpeg" alt="Photo 15"></div>
+        <div class="bubble"><img src="Images\Photo 2.jpg" alt="Photo 2"></div>
+        <div class="bubble"><img src="Images\Photo 3.jpg" alt="Photo 3"></div>
+        <div class="bubble"><img src="Images\Photo 32.jpeg" alt="Photo 32"></div>
+        <div class="bubble"><img src="Images\Photo 4.jpg" alt="Photo 4"></div>
+        <div class="bubble"><img src="Images\Photo 16.jpeg" alt="Photo 16"></div>
+        <div class="bubble"><img src="Images\Photo 17.jpeg" alt="Photo 17"></div>
+        <div class="bubble"><img src="Images\Photo 18.jpeg" alt="Photo 18"></div>
+        <div class="bubble"><img src="Images\Photo 19.jpeg" alt="Photo 19"></div>
+        <div class="bubble"><img src="Images\Photo 20.jpeg" alt="Photo 20"></div>
+        <div class="bubble"><img src="Images\Photo 21.jpeg" alt="Photo 21"></div>
+        <div class="bubble"><img src="Images\Photo 5.jpg" alt="Photo 5"></div>
 
-        <div class="bubble"><img src="Photo 26.jpg" alt="Photo 26"></div>
-        <div class="bubble"><img src="Photo 28.jpg" alt="Photo 28"></div>
-        <div class="bubble"><img src="Photo 29.jpg" alt="Photo 29"></div>
-        <div class="bubble"><img src="Photo 30.jpg" alt="Photo 30"></div>
+        <div class="bubble"><img src="Images\Photo 26.jpg" alt="Photo 26"></div>
+        <div class="bubble"><img src="Images\Photo 28.jpg" alt="Photo 28"></div>
+        <div class="bubble"><img src="Images\Photo 29.jpg" alt="Photo 29"></div>
+        <div class="bubble"><img src="Images\Photo 30.jpg" alt="Photo 30"></div>
 
-        <div class="bubble"><img src="Photo 22.jpeg" alt="Photo 22"></div>
+        <div class="bubble"><img src="Images\Photo 22.jpeg" alt="Photo 22"></div>
 
-        <div class="bubble"><img src="Photo 27.jpg" alt="Photo 27"></div>
+        <div class="bubble"><img src="Images\Photo 27.jpg" alt="Photo 27"></div>
 
     </div>
 
