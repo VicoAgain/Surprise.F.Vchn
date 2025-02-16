@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz pour ma copine ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.1"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #progress {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            display: none;
+            transition: all 0.5s ease-in-out;
+            position: relative;
+            border: 2px solid white;
+        }
+
+        .date {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 0.9em;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #E84855;
+            font-weight: bold;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .countdown {
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .question p {
+            font-size: 1.4em;
+            font-weight: bold;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        input {
+            padding: 12px;
+            width: 90%;
+            max-width: 400px;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            padding: 12px 25px;
+            margin-top: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background: #ff4b5c;
+            color: white;
+            font-size: 1.2em;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #e63950;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>❤️ Le quizz de la star ❤️</h1>
+    <p id="progress">Questions débloquées : 0 / 15</p>
+    <p id="next-unlock" class="countdown"></p>
+    <div id="questions">
+        <div class="question" data-unlock="2025-01-06">
+            <span class="date">6 janvier 2025</span>
+            <p>Comment étais-je habillé lors du 1er date (type de vêtement + couleur sous format "X Y" → ex : "Pull Rouge")</p>
+            <input type="text" id="answer1" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer1', 'T-shirt beige')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-01-13">
+            <span class="date">13 janvier 2025</span>
+            <p>Combien de plats avais-je préparé pour le 3ème date ?</p>
+            <input type="text" id="answer2" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer2', '4')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-01-20">
+            <span class="date">20 janvier 2025</span>
+            <p>Combien avons-nous d'heure de jeux sur "It Takes Two" ?</p>
+            <input type="text" id="answer3" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer3', '5')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-01-27">
+            <span class="date">27 janvier 2025</span>
+            <p>Combien ai-je de qualité ? (environ parce que j'en ai beaucoup)</p>
+            <input type="text" id="answer4" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer4', 'Infini')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-02-01">
+            <span class="date">1er février 2025</span>
+            <p>Combien ai-je de défaut ? (chiffre exact par contre pour celle-ci)</p>
+            <input type="text" id="answer5" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer5', '1')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-02-10">
+            <span class="date">10 février 2025</span>
+            <p>Quelle est ma position préférée ? (pour l'instant 😏)</p>
+            <input type="text" id="answer6" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer6', 'La levrette')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-02-17">
+            <span class="date">17 février 2025</span>
+            <p>Quelle est ma couleur préférée ?</p>
+            <input type="text" id="answer7" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer7', 'Rouge')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-02-24">
+            <span class="date">24 février 2025</span>
+            <p>Combien avons-nous fait de restaurant ensemble ? (sans compter les Mcdo et FKC)</p>
+            <input type="text" id="answer8" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer8', '13')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-03-03">
+            <span class="date">3 mars 2025</span>
+            <p>Combien de fois avons-nous fait l'amour ? (réponse approximative)</p>
+            <input type="text" id="answer9" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer9', 'Pas assez')">Valider</button>
+            <p class="result"></p>
+        </div>
+        
+
+        <div class="question" data-unlock="2025-03-17">
+            <span class="date">17 mars 2025</span>
+            <p>Combien de capotes avons-nous utilisé ?</p>
+            <input type="text" id="answer10" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer10', '62')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-03-24">
+            <span class="date">24 mars 2025</span>
+            <p>Es-tu parisienne ?</p>
+            <input type="text" id="answer11" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer11', 'Oui')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-03-31">
+            <span class="date">31 mars 2025</span>
+            <p>Quel est mon plat préféré ?</p>
+            <input type="text" id="answer12" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer12', 'Pâtes au pesto rosso')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-04-07">
+            <span class="date">7 avril 2025</span>
+            <p>Quelle était le jour (sous format date jj/mm/aaaa) où je t'ai proposé le fameux café ? → pure déduction de ma part après d'intenses recherches</p>
+            <input type="text" id="answer13" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer13', '19/07/2024')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-03-10">
+            <span class="date">10 mars 2025</span>
+            <p>Sur une échelle de 1 à 10 : combien je t'aime ?</p>
+            <input type="text" id="answer14" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer14', 'Infini')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
+        <div class="question" data-unlock="2025-03-10">
+            <span class="date">10 mars 2025</span>
+            <p>Sur une échelle de 1 à 10 : à combien se situe mon envie de te revoir ?</p>
+            <input type="text" id="answer15" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer15', 'Infini')">Valider</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+
+    <script>
+        function checkAnswer(inputId, correctAnswer) {
+            let inputField = document.getElementById(inputId);
+            let response = inputField.value.trim().toLowerCase();
+            let questionDiv = inputField.closest('.question');
+            let resultMessage = questionDiv.querySelector(".result");
+
+            if (response === correctAnswer) {
+                confettiEffect();
+                resultMessage.innerHTML = "Bravo ! 🎉";
+                resultMessage.style.color = "#0f0";
+            } else {
+                resultMessage.innerHTML = "Essaie encore ! 😘";
+                resultMessage.style.color = "#ff4d4d";
+            }
+        }
+
+        function unlockQuestions() {
+            let today = new Date();
+            let unlockedCount = 0;
+            let totalQuestions = document.querySelectorAll(".question").length;
+            let nextUnlockDate = null;
+            
+            document.querySelectorAll(".question").forEach(question => {
+                let unlockDate = new Date(question.getAttribute("data-unlock"));
+                if (today >= unlockDate) {
+                    question.style.display = "block";
+                    unlockedCount++;
+                } else if (!nextUnlockDate || unlockDate < nextUnlockDate) {
+                    nextUnlockDate = unlockDate;
+                }
+            });
+            document.getElementById("progress").innerText = `Questions débloquées : ${unlockedCount} / ${totalQuestions}`;
+            
+            if (nextUnlockDate) {
+                let countdown = setInterval(() => {
+                    let now = new Date();
+                    let timeLeft = nextUnlockDate - now;
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        unlockQuestions();
+                    } else {
+                        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                        document.getElementById("next-unlock").innerText = `Prochaine question dans : ${days}j ${hours}h ${minutes}m`;
+                    }
+                }, 1000);
+            }
+        }
+
+        function confettiEffect() {
+            var duration = 2 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, spread: 100 });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        unlockQuestions();
+    </script>
+</body>
+</html>
