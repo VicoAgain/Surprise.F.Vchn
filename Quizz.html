@@ -99,12 +99,22 @@
             font-weight: bold;
         }
 
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
     </style>
 </head>
 <body>
     <h1>❤️ Le quizz de la star ❤️</h1>
     <p id="progress">Questions débloquées : 0 / 15</p>
     <p id="next-unlock" class="countdown"></p>
+    <div class="background"></div>
     <div id="questions">
         <div class="question" data-unlock="2025-01-06">
             <span class="date">6 janvier 2025</span>
@@ -187,6 +197,15 @@
         </div>
         
 
+        <div class="question" data-unlock="2025-03-10">
+            <span class="date">10 mars 2025</span>
+            <p>Sur une échelle de 1 à 10 : combien je t'aime ?</p>
+            <input type="text" id="answer14" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer14', 'Infini')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+
         <div class="question" data-unlock="2025-03-17">
             <span class="date">17 mars 2025</span>
             <p>Combien de capotes avons-nous utilisé ?</p>
@@ -223,22 +242,30 @@
         </div>
 
 
-        <div class="question" data-unlock="2025-03-10">
-            <span class="date">10 mars 2025</span>
-            <p>Sur une échelle de 1 à 10 : combien je t'aime ?</p>
-            <input type="text" id="answer14" placeholder="Ta réponse ici">
-            <button onclick="checkAnswer('answer14', 'Infini')">Valider</button>
-            <p class="result"></p>
-        </div>
-
-
-        <div class="question" data-unlock="2025-03-10">
-            <span class="date">10 mars 2025</span>
+        <div class="question" data-unlock="2025-04-07">
+            <span class="date">Last bonus</span>
             <p>Sur une échelle de 1 à 10 : à combien se situe mon envie de te revoir ?</p>
             <input type="text" id="answer15" placeholder="Ta réponse ici">
             <button onclick="checkAnswer('answer15', 'Infini')">Valider</button>
             <p class="result"></p>
         </div>
+
+        <div class="question" data-unlock="2025-02-17">
+            <span class="date">Bonus 1</span>
+            <p>Quel est mon seul défaut ?</p>
+            <input type="text" id="answer16" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer16', 'La perfection')">Valider</button>
+            <p class="result"></p>
+        </div>
+
+        <div class="question" data-unlock="2025-03-31">
+            <span class="date">Bonus 2</span>
+            <p>Quel est mon dessert préféré ?</p>
+            <input type="text" id="answer17" placeholder="Ta réponse ici">
+            <button onclick="checkAnswer('answer17', 'Toi')">Valider</button>
+            <p class="result"></p>
+        </div>
+
     </div>
 
 
@@ -249,7 +276,7 @@
             let questionDiv = inputField.closest('.question');
             let resultMessage = questionDiv.querySelector(".result");
 
-            if (response === correctAnswer) {
+            if (response === correctAnswer.trim().toLowerCase()) {
                 confettiEffect();
                 resultMessage.innerHTML = "Bravo ! 🎉";
                 resultMessage.style.color = "#0f0";
@@ -274,7 +301,7 @@
                     nextUnlockDate = unlockDate;
                 }
             });
-            document.getElementById("progress").innerText = `Questions débloquées : ${unlockedCount} / 14`;
+            document.getElementById("progress").innerText = `Questions débloquées : ${unlockedCount} / ${totalQuestions}`;
             
             if (nextUnlockDate) {
                 let countdown = setInterval(() => {
@@ -305,6 +332,57 @@
         }
 
         unlockQuestions();
+
+        function createParticles() {
+            let canvas = document.createElement("canvas");
+            document.querySelector(".background").appendChild(canvas);
+            let ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particles = [];
+
+            function Particle() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 4;
+                this.dx = (Math.random() - 0.8) * 0.8;
+                this.dy = (Math.random() - 0.8) * 0.8;
+            }
+
+            Particle.prototype.update = function () {
+                this.x += this.dx;
+                this.y += this.dy;
+                if (this.x < 0 || this.x > canvas.width) this.dx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.dy *= -1;
+            };
+
+            Particle.prototype.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+                ctx.fill();
+            };
+
+            function initParticles() {
+                for (let i = 0; i < 100; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            initParticles();
+            animate();
+        }
+
+        createParticles();
     </script>
 </body>
 </html>
