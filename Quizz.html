@@ -301,7 +301,7 @@
                     nextUnlockDate = unlockDate;
                 }
             });
-            document.getElementById("progress").innerText = `Questions débloquées : ${unlockedCount} / ${unlockQuestions}`;
+            document.getElementById("progress").innerText = `Questions débloquées : ${unlockedCount} / ${totalQuestions}`;
             
             if (nextUnlockDate) {
                 let countdown = setInterval(() => {
